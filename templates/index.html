@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="{{ url_for('static', filename='./css/main.css' )}}" rel="stylesheet" />
+    <script src="{{url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+  <title>Home::Political Tweets Sentiment Analysis</title>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+    span.res-text {
+    font-size: 45px;
+    color: black;
+    font-weight: bold;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .active {
+      
+    }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li><a class="active" href="{{ url_for('index')}}">Home</a></li>
+      
+      <li><a href="{{ url_for('about')}}">About</a></li>
+    </ul>
+    <div class="header">
+      <h1>Political Tweets Sentiment Analysis</h1>
+      <p>Hassan Taiwo Salaudeen (TP18/19/H/----)</p>      
+    </div>
+
+    <div class="s010">
+      <form role="search" name="searcharea">
+        <div class="inner-form">
+          <div class="basic-search">
+            <div class="input-field">
+              <input  id="form" type="search" name="q" placeholder="Enter Tweet" />
+              <div class="icon-wrap">
+                  
+
+        <button type="submit" class="btn-search" id="query">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+        </button> 
+
+              </div>
+            </div>
+            <span  id='inputtext_err' style="color:red;"></span>
+          </div>
+          <div class="advance-search">
+            <div class="row third">
+              <div class="input-field">
+                <div class="result-count">
+                  
+                <div class="group-btn">
+                  <button type="reset" class="btn-delete" id="delete">Clear Result</button>
+                  
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class='row'>       
+            <div class='col-md-6'>
+              
+                <!-- <h4 style='padding-left:10px;'>Analysis Result </h4> -->
+                <span class="res-text" id="resID"> </span>
+                
+            </div>
+            
+        </div>
+      </div>
+      </form>
+      
+    </div>
+
+
+  <script>
+    $(function(){
+        $('#delete').bind('click', function() {
+        var clr = $.trim($('q').val());       
+       
+        $('#resID').empty();        
+        $('#inputtext_err').text('');
+        
+
+    });
+    })
+
+    
+    $(function(){
+              
+        // input processsing with text box
+        $('#query').bind('click', function(){
+            $('#resID').empty();
+            var texinput = $('input[name="q"]').val();       
+
+            $.getJSON('/sentanalysis', {input_text:$('input[name="q"]').val()},
+                function(data){                    
+                    if(data.error_input){
+                        $("#inputtext_err").html(data.error_input);
+                        
+                    }                
+                    else{
+                        
+                        $("#inputtext_err").html("");
+                        $("#inputtext_err").html("  Please Wait");
+                        $('#resID').html(data.result);          
+                        $("#inputtext_err").html("");
+                    }
+                    
+                }
+                
+            );
+            return false;        
+    });
+    
+})
+</script>
+</body>
+</html>
