@@ -2,14 +2,13 @@
 """
 Created on Sun May 29 11:03:03 2022
 
-@author: ETA SysNet
 """
 import webbrowser as wb
 from flask import Flask, render_template, jsonify, request
 from pred_test import *
 app = Flask(__name__)
 
-@app.route('/search')
+@app.route('/')
 def index():
     return render_template('index.html')
 
@@ -35,7 +34,7 @@ def sentanalysis():
 
 
 if __name__ == "__main__":
-    wb.open_new_tab('http://localhost:1000/search')
-    app.run(debug=False, port=1000)
+    #wb.open_new_tab('http://localhost:1000/search')
+    app.run(debug=True)
     
     #app.run(host='0.0.0.0')
