@@ -820,9 +820,10 @@ legend {
 .header {
   padding: 10px;
   text-align: center;
-  background: #1e1f42;
+  background: #1c1d38;
   color: white;
   font-size: 30px;
+  font-family: 'Lobster', cursive;
 }
 
 
@@ -832,9 +833,9 @@ legend {
   display: flex;
   -ms-flex-pack: center;
       justify-content: center;
-  background: url("../images/tweet.png");
-  /*background-size: cover;*/
-  background-position: center bottom;
+  background: url("../images/9 (1).jpg");
+  background-size: cover;
+  background-position: center top;
  /* background: #800080;*/
   padding: 43px;
   font-family: 'Lato', sans-serif;
@@ -864,7 +865,8 @@ legend {
   height: 70px;
   color: #fff;
   background: linear-gradient(to right, #495868 0%, #171a1f 28%, #1e1f42 91%, #84888c 101%);
-  font-family: 'Lato', sans-serif;
+  font-family: 'Macondo', cursive;
+
 }
 
 .s010 form .inner-form .input-field input.placeholder {
@@ -948,6 +950,7 @@ legend {
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
   z-index: 0;
   position: relative;
+  font-family: 'Macondo', cursive;
 }
 
 .s010 form .inner-form .input-field .btn-delete:hover, .s010 form .inner-form .input-field .btn-delete:focus {
@@ -1202,7 +1205,18 @@ legend {
   .s010 form .inner-form .advance-search {
     padding: 40px 15px;
   }
-  .s010 form .inner-form .advance-search .row {
+  .s010 form .inner-form .row {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: RoyalBlue;
     display: block;
   }
   .s010 form .inner-form .advance-search .input-field {
